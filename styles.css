@@ -1,0 +1,4 @@
+#add-book-modal {
+    display: flex;
+    flex-direction: column;
+}
