@@ -7,8 +7,14 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
-function addBookToLibrary() {
-    //adds new book object to array myLibrary with .push()
+function addBookToLibrary(newBook) {
+    myLibrary.push(newBook);
+}
+
+function displayBooks() {
+    for (book in myLibrary) {
+
+    }
 }
 
 const dialog = document.querySelector('dialog');
@@ -20,5 +26,20 @@ newBookButton.addEventListener('click', () => {
 });
 
 closeButton.addEventListener('click', () => {
+    
+    const title = document.getElementById('title').value;
+    const author = document.getElementById('author').value;
+    const pages = document.getElementById('pages').value;
+    const read = document.getElementById('read').value;
+    
+    newBook = new Book(title, author, pages, read);
+    
+    addBookToLibrary(newBook);
+    console.log(myLibrary);
+
+    document.getElementById('title').value = '';
+    document.getElementById('author').value = '';
+    document.getElementById('pages').value = '';
+
     dialog.close();
 });
