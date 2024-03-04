@@ -8,12 +8,16 @@ function Book(title, author, pages, read) {
 }
 
 function addBookToLibrary(newBook) {
+
     myLibrary.push(newBook);
 }
 
 function displayBooks() {
     for (book in myLibrary) {
-
+        const display = document.querySelector('div#library');
+        const p = document.createElement('p');
+        p.textContent = `Name: ${this.name} | Author: ${this.author} | Pages: ${this.pages} | Read: ${this.read}`;
+        display.appendChild(p);
     }
 }
 
@@ -36,6 +40,8 @@ closeButton.addEventListener('click', () => {
     
     addBookToLibrary(newBook);
     console.log(myLibrary);
+
+    displayBooks();
 
     document.getElementById('title').value = '';
     document.getElementById('author').value = '';
