@@ -1,24 +1,32 @@
 const myLibrary = [];
 
+const library = document.querySelector('div#library');
+
 function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
+    this.title = title,
+        this.author = author,
+        this.pages = pages,
+        this.read = read
 }
 
-function addBookToLibrary(newBook) {
+function addbook() {
+    while (library.firstChild) {
+        library.removeChild(library.firstChild);
+    }
+    const p = document.createElement('p');
+    p.textContent = `Title: ${this.title}, Author: ${this.author}, Pages: ${this.pages}, Read: ${this.read}`;
+    library.appendChild(p);
+}
 
+
+function addBookToLibrary(newBook) {
     myLibrary.push(newBook);
 }
 
 function displayBooks() {
-    for (book in myLibrary) {
-        const display = document.querySelector('div#library');
-        const p = document.createElement('p');
-        p.textContent = `Name: ${this.name} | Author: ${this.author} | Pages: ${this.pages} | Read: ${this.read}`;
-        display.appendChild(p);
-    }
+    myLibrary.forEach((book) => {
+        addbook.call(book);
+    })
 }
 
 const dialog = document.querySelector('dialog');
@@ -30,14 +38,14 @@ newBookButton.addEventListener('click', () => {
 });
 
 closeButton.addEventListener('click', () => {
-    
+
     const title = document.getElementById('title').value;
     const author = document.getElementById('author').value;
     const pages = document.getElementById('pages').value;
     const read = document.getElementById('read').value;
-    
+
     newBook = new Book(title, author, pages, read);
-    
+
     addBookToLibrary(newBook);
     console.log(myLibrary);
 
