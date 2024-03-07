@@ -4,9 +4,9 @@ const library = document.querySelector('div#library');
 
 function Book(title, author, pages, read) {
     this.title = title,
-        this.author = author,
-        this.pages = pages,
-        this.read = read
+    this.author = author,
+    this.pages = pages,
+    this.read = read
 }
 
 function clearLibrary() {
@@ -17,13 +17,19 @@ function clearLibrary() {
 
 function addbook() {
     const p = document.createElement('p');
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete this Entry';
+    deleteButton.classList.toggle('deleteButton');
+    deleteButton.setAttribute('id', `${this.title}`);
+    
     p.textContent = `Title: ${this.title}, Author: ${this.author}, Pages: ${this.pages}, Read: ${this.read}`;
+    p.setAttribute('id', `${this.title}`);
+    p.appendChild(deleteButton);
     if (library.firstChild) {
         library.insertBefore(p, library.firstChild);
     } else {
         library.appendChild(p);
     }
-    
 }
 
 
