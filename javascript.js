@@ -9,13 +9,21 @@ function Book(title, author, pages, read) {
         this.read = read
 }
 
-function addbook() {
+function clearLibrary() {
     while (library.firstChild) {
         library.removeChild(library.firstChild);
     }
+}
+
+function addbook() {
     const p = document.createElement('p');
     p.textContent = `Title: ${this.title}, Author: ${this.author}, Pages: ${this.pages}, Read: ${this.read}`;
-    library.appendChild(p);
+    if (library.firstChild) {
+        library.insertBefore(p, library.firstChild);
+    } else {
+        library.appendChild(p);
+    }
+    
 }
 
 
@@ -24,6 +32,7 @@ function addBookToLibrary(newBook) {
 }
 
 function displayBooks() {
+    clearLibrary();
     myLibrary.forEach((book) => {
         addbook.call(book);
     })
