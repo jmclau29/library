@@ -23,7 +23,7 @@ function addbook(i) {
     deleteButton.setAttribute('id', `${this.title}`);
 
     p.textContent = `Title: ${this.title}, Author: ${this.author}, Pages: ${this.pages}, Read: ${this.read}`;
-    p.setAttribute('id', `${this.title}`);
+    p.classList.toggle('bookEntry');
     p.dataset.bookId = i;
 
     p.appendChild(deleteButton);
@@ -43,12 +43,14 @@ function displayBooks() {
     for (let i = 0; i < myLibrary.length; i++) {
         addbook.call(myLibrary[i], i);
     }
-    /* myLibrary.forEach((book) => {
-        addbook.call(book);
-    }) */
 }
 
-
+function resetBookIds() {
+    const books = library.querySelectorAll('.bookEntry')
+    for (let i = books.length -1; i > 0; i--) {
+        books[i].dataset.bookId = i;
+    }
+}
 
 const dialog = document.querySelector('dialog');
 const newBookButton = document.querySelector('dialog + button');
@@ -83,8 +85,7 @@ library.addEventListener('click', function (e) {
     if (e.target.classList.contains('deleteButton')) {
         myLibrary.splice(e.target.dataset.bookId, 1);
         e.target.parentNode.remove();
-
+        resetBookIds();
     }
-
-
+    
 });
