@@ -25,11 +25,11 @@ function addbook() {
     p.textContent = `Title: ${this.title}, Author: ${this.author}, Pages: ${this.pages}, Read: ${this.read}`;
     p.setAttribute('id', `${this.title}`);
     p.appendChild(deleteButton);
-    if (library.firstChild) {
+if (library.firstChild) {
         library.insertBefore(p, library.firstChild);
     } else {
-        library.appendChild(p);
-    }
+    library.appendChild(p);
+}
 }
 
 
@@ -72,3 +72,11 @@ closeButton.addEventListener('click', () => {
 
     dialog.close();
 });
+
+library.addEventListener('click', function (e) {
+    if (e.target.classList.contains('deleteButton')) {
+        e.target.parentNode.remove();
+    }
+    
+    
+})
