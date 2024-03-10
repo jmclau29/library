@@ -15,7 +15,7 @@ function clearLibrary() {
     }
 }
 
-function addbook(i) {
+function addbook() {
     const p = document.createElement('p');
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Delete this Entry';
@@ -24,7 +24,7 @@ function addbook(i) {
 
     p.textContent = `Title: ${this.title}, Author: ${this.author}, Pages: ${this.pages}, Read: ${this.read}`;
     p.classList.toggle('bookEntry');
-    p.dataset.bookId = i;
+    p.setAttribute('id', `${this.title}`);
 
     p.appendChild(deleteButton);
     if (library.firstChild) {
@@ -45,10 +45,11 @@ function displayBooks() {
     }
 }
 
-function resetBookIds() {
-    const books = library.querySelectorAll('.bookEntry')
-    for (let i = books.length -1; i > 0; i--) {
-        books[i].dataset.bookId = i;
+function removeArrayBook(deletedBook) {
+    for (let i = 0; i < myLibrary.length; i++) {
+        if (deletedBook === myLibrary[i].title) {
+            myLibrary.splice(i, 1);
+        }
     }
 }
 
@@ -83,9 +84,9 @@ closeButton.addEventListener('click', () => {
 
 library.addEventListener('click', function (e) {
     if (e.target.classList.contains('deleteButton')) {
-        myLibrary.splice(e.target.dataset.bookId, 1);
+        let bookTitle = e.target.getAttribute('id');
+        removeArrayBook(bookTitle);
         e.target.parentNode.remove();
-        resetBookIds();
     }
     
 });
