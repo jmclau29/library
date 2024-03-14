@@ -1,3 +1,7 @@
+button, label {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 dialog {
     position: flex;
     align-items: center;
@@ -29,6 +33,7 @@ label {
     display: grid;
     align-items: center;
     justify-content: center;
+    justify-items: center;
 }
 
 .toggleReadButton {
