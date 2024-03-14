@@ -33,15 +33,20 @@ function clearLibrary() {
 function generateBook() {
     const p = document.createElement('p');
     const deleteButton = document.createElement('button');
+    const toggleReadButton = document.createElement('button');
     deleteButton.textContent = 'Delete this Entry';
     deleteButton.classList.toggle('deleteButton');
     deleteButton.setAttribute('id', `${this.title}`);
+    toggleReadButton.textContent = 'Toggle Read/Unread';
+    toggleReadButton.classList.toggle('toggleReadButton');
+    
 
     p.textContent = `Title: ${this.title}, Author: ${this.author}, Pages: ${this.pages}, Read: ${this.read}`;
     p.classList.toggle('bookEntry');
     p.setAttribute('id', `${this.title}`);
 
     p.appendChild(deleteButton);
+    p.appendChild(toggleReadButton);
     if (library.firstChild) {
         library.insertBefore(p, library.firstChild);
     } else {
@@ -109,3 +114,19 @@ Book.prototype.toggleRead = function() {
         this.read = 'Read';
     }
 }
+
+/* 
+This event Listener checks for the toggleRead button to be clicked, finds the item in the myLibrary array,
+changes it, then reloads the display in the library div, reflecting the changed value.
+*/
+library.addEventListener('click', function (e) {
+    if (e.target.classList.contains('toggleReadButton')) {
+        let bookTitle = e.target.parentNode.getAttribute("id");
+        for (let i = 0; i < myLibrary.length; i++) {
+            if (myLibrary[i].title === bookTitle) {
+                myLibrary[i].toggleRead();
+                displayBooks();
+            }
+        }
+    }
+})
