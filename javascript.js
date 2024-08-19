@@ -2,11 +2,23 @@ const myLibrary = [];
 const library = document.querySelector('div#library');
 
 //this constructor creates new Book objects, which are later added to the myLibrary array.
-function Book(title, author, pages, read) {
-    this.title = title,
-        this.author = author,
-        this.pages = pages,
-        this.read = read
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title,
+            this.author = author,
+            this.pages = pages,
+            this.read = read;
+    }
+    //Add a button on each book's display to change its read status.
+    //Create a function that toggles a book's read status on the Book prototype instance.
+    //prototype function AKA object method to toggle read status in the object.
+    toggleRead() {
+        if (this.read === 'Read') {
+            this.read = 'Not Read';
+        } else {
+            this.read = 'Read';
+        }
+    }
 }
 
 //the following functions deal with adding and removing Book objects to and from the array.
@@ -103,17 +115,6 @@ library.addEventListener('click', function (e) {
     
 });
 
-//Add a button on each book's display to change its read status.
-//Create a function that toggles a book's read status on the Book prototype instance.
-
-//prototype function AKA object method to toggle read status in the object.
-Book.prototype.toggleRead = function() {
-    if (this.read === 'Read') {
-        this.read = 'Not Read';
-    } else {
-        this.read = 'Read';
-    }
-}
 
 /* 
 This event Listener checks for the toggleRead button to be clicked, finds the item in the myLibrary array,
