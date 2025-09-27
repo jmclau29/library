@@ -74,35 +74,47 @@ function displayBooks() {
     }
 }
 
-const dialog = document.querySelector('dialog');
-const newBookButton = document.querySelector('dialog + button');
-const closeButton = document.querySelector('dialog button');
-
-//event Listener to display the book entry modal.
-newBookButton.addEventListener('click', () => {
-    dialog.showModal();
-});
+const addBookBtn = document.getElementById('add-book');
 
 //event Listener to get the information from the modal, add it to myLibrary, display it, and then close the modal.
-closeButton.addEventListener('click', () => {
+addBookBtn.addEventListener('click', () => {
 
-    const title = document.getElementById('title').value;
-    const author = document.getElementById('author').value;
-    const pages = document.getElementById('pages').value;
-    const read = document.getElementById('read').value;
+    const title = document.getElementById('title');
+    const author = document.getElementById('author');
+    const pages = document.getElementById('pages');
+    const read = document.getElementById('read');
 
-    newBook = new Book(title, author, pages, read);
+    if (title.validity.valueMissing) {
+        title.setCustomValidity("I am expecting a title!");
+        return;
+    } else {
+        title.setCustomValidity("");
+    }
+
+    if (author.validity.valueMissing) {
+        author.setCustomValidity("I am expecting an author name!");
+        return;
+    } else {
+        author.setCustomValidity("");
+    }
+
+    if (pages.validity.valueMissing) {
+        pages.setCustomValidity("Add page count, please!");
+        return;
+    } else {
+        pages.setCustomValidity("");
+    }
+
+    newBook = new Book(title.value, author.value, pages.value, read.value);
 
     addBookToLibrary(newBook);
     console.log(myLibrary);
 
     displayBooks();
 
-    document.getElementById('title').value = '';
-    document.getElementById('author').value = '';
-    document.getElementById('pages').value = '';
-
-    dialog.close();
+    title.value = '';
+    author.value = '';
+    pages.value = '';
 });
 
 //event Listener to delete an entry from myLibrary and then remove it from the display.

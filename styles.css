@@ -2,21 +2,6 @@ button, label {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-dialog {
-    position: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 600px;
-    max-width: 100%;
-    max-height: 100%;
-}
-
-dialog > * {
-    display: grid;
-    grid-template-rows: auto;
-}
-
 #add-book {
     margin-top: 40px;
 }
@@ -38,4 +23,13 @@ label {
 
 .toggleReadButton {
     margin-left: 5px;
+}
+
+input {
+    border: 2px solid black;
+    border-radius: 8px;
+}
+input:user-invalid {
+    border: 2px solid red;
+    border-radius: 8px;
 }
